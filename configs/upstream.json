@@ -1,0 +1,39 @@
+{
+  "repository": "https://github.com/ZJU-REAL/SDAR.git",
+  "commit": "29dcb12a55d8fc17ba6ae03fd0a69048f43051f3",
+  "method": "RLSD ALFWorld baseline reproduced by SDAR",
+  "native_launcher": "examples/rlsd_trainer/run_alfworld_3b.sh",
+  "patch_sha256": "e88ab4fe3878cf93e3cd130d26a5dd0acf2142f6fc932c8a48c31850d464001b",
+  "seen140_sha256": "bb3a1d67751b04ef0d03bcba0bd4b7c97d98f86ebcf20160985918256f957cb8",
+  "unchanged_files": {
+    "verl/trainer/ppo/core_algos.py": "5043f97b87b00ab5c5d907022ea6cf148b935fdb71c37222a3f9c33ccfaf1dc6",
+    "verl/trainer/ppo/rlsd_ray_trainer.py": "019f6f3010108abe360bb96f8b9b13daf87d1ba29fcf6bb986e31b1b12136be2",
+    "verl/trainer/ppo/rlsd_utils.py": "2d36be3299d9374f2235e837024e284049a90704b43db676c3e792682a6cdd07",
+    "verl/trainer/ppo/ray_trainer.py": "47912490bc2e0de5999ac9588279bf38c87839145cb2101da1ab614f83a02023",
+    "verl/workers/actor/dp_actor.py": "c53da24aaf2ec308e7cce7be866b322890934896aa5e1ba575e8768c5fd48cd1",
+    "verl/workers/fsdp_workers.py": "7d70d685bbad4711ebd17595698cbc9a8bc379c5da20b12203fadf51f063b2cc",
+    "agent_system/multi_turn_rollout/rollout_loop.py": "23b9f35d8eb2cd87effd763286aefe6868d19473a4266b94e51c3390c92d035b",
+    "agent_system/environments/env_package/alfworld/projection.py": "e794d1217d613ef4b550cfe4bfd0b39b4deb10d47493f31f78aef7b5ebf6dd98",
+    "agent_system/environments/prompts/alfworld.py": "f24267701a1d0fffb81c6e9b69f259d63dba9378515db4764f82f13f23bc9084",
+    "agent_system/memory/memory.py": "d9940bf9d49442f76667b80aff7e80b7c93f37bef015b06641e60229bb3f0d9c",
+    "examples/rlsd_trainer/run_alfworld_3b.sh": "d568ee28ad08a9390a8013f578c4210c154b5b02cf3e2d4f87f08c615e4d24e0",
+    "verl/trainer/config/ppo_trainer.yaml": "0f69218f169aed29a827818ca76fb26f7c1c5632bd9cbe318884617d5aa228cc",
+    "verl/utils/checkpoint/fsdp_checkpoint_manager.py": "8c552fae85be2a07fdbe4f24aae7c11a0dc2366ce2768dcefa05b993e34b8a03",
+    "skills/alfworld/alfworld_skills_nl.md": "20be9f8870b3ef29bf3742320cb5d5f627134118f932739cd4857f20ce00a487",
+    "skills/alfworld/claude_style_skills.json": "e8a953beac1809591fadf0d3509db5dea6e66b0fb56ddb573cf30e6d8879e909",
+    "skills/alfworld/clean.md": "9797feee0b55a995df6be980e9bbbb9186dc67f2003b7334b902713d670e2063",
+    "skills/alfworld/cool.md": "23a7ee2ac5303665285e8017d52df087d24878dd48bad478b7d6554ab0b75219",
+    "skills/alfworld/general_skills.md": "d41d7a51347c9ba4626150b5c506089324eb0690cfd049b5aa484e136c4f10ce",
+    "skills/alfworld/generated_memories_alfworld_total.json": "574738bbf6666182ff7faf5e60f454978f5081fe2e854b4ee41cb780d8e992df",
+    "skills/alfworld/heat.md": "38a4d1bc3e67a0a0f7cc3ad4033b243542e25a19edf20b8b9d7b2f3f152c9ee8",
+    "skills/alfworld/look_at_obj_in_light.md": "1dd58fb6317c4b5702f7462e6455321b74b568bb02374189451158e3e1d0716b",
+    "skills/alfworld/pick_and_place.md": "da4ab3a48df67a38619cd87e28ced5d0c03228377478e23020a5a3ab9531a5c8",
+    "skills/alfworld/skill_mapping.json": "5421080a2f251c267119fbbd91d0594c9de2a105d11f2c2b37b40582cf851604"
+  },
+  "patched_files": {
+    "agent_system/environments/env_manager.py": "1e0d2417c318a141c0c6fbad5c6b3237a7f4858541743a675ebc5dc6ef8ef326",
+    "agent_system/environments/env_package/alfworld/envs.py": "053a1b5fdd65a6f402609eb1f47081ad167caa99c5f4aa23e79225347827097a",
+    "verl/trainer/main_rlsd.py": "faa2e5841c21c7ecbff2917a9146f95adcdce1d5485ff7a42c04faac7371a0b0",
+    "agent_system/environments/env_package/alfworld/fixed_validation.py": "3f63b5f3ab11789e3b0e7e2f0a1d68c0a305efaeba2fb4fabc2ea2c8fb87f526"
+  }
+}
