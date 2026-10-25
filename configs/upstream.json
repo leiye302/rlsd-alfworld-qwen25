@@ -3,7 +3,7 @@
   "commit": "29dcb12a55d8fc17ba6ae03fd0a69048f43051f3",
   "method": "RLSD ALFWorld baseline reproduced by SDAR",
   "native_launcher": "examples/rlsd_trainer/run_alfworld_3b.sh",
-  "patch_sha256": "e88ab4fe3878cf93e3cd130d26a5dd0acf2142f6fc932c8a48c31850d464001b",
+  "patch_sha256": "9078ca13690c7577b740bb5512ea9a3e561bbd49e67425eea4df2ecca290c82e",
   "seen140_sha256": "bb3a1d67751b04ef0d03bcba0bd4b7c97d98f86ebcf20160985918256f957cb8",
   "unchanged_files": {
     "verl/trainer/ppo/core_algos.py": "5043f97b87b00ab5c5d907022ea6cf148b935fdb71c37222a3f9c33ccfaf1dc6",
@@ -31,8 +31,8 @@
     "skills/alfworld/skill_mapping.json": "5421080a2f251c267119fbbd91d0594c9de2a105d11f2c2b37b40582cf851604"
   },
   "patched_files": {
-    "agent_system/environments/env_manager.py": "1e0d2417c318a141c0c6fbad5c6b3237a7f4858541743a675ebc5dc6ef8ef326",
-    "agent_system/environments/env_package/alfworld/envs.py": "053a1b5fdd65a6f402609eb1f47081ad167caa99c5f4aa23e79225347827097a",
+    "agent_system/environments/env_manager.py": "ba53a6abe50cdc6ade28bffa3b640e3d4e13aabecd86973c4dc249e8d0a485af",
+    "agent_system/environments/env_package/alfworld/envs.py": "e79b276420b96e25d9b20a3de92c5e86fa873ce6c20bef3b6aa25deb24dbeb4e",
     "verl/trainer/main_rlsd.py": "faa2e5841c21c7ecbff2917a9146f95adcdce1d5485ff7a42c04faac7371a0b0",
     "agent_system/environments/env_package/alfworld/fixed_validation.py": "3f63b5f3ab11789e3b0e7e2f0a1d68c0a305efaeba2fb4fabc2ea2c8fb87f526"
   }

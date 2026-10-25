@@ -35,6 +35,7 @@ def config(size, model, assets, run_dir, cpus=32, evaluate=False):
         'trainer.val_only': evaluate,
         'ray_init.address': 'local', 'ray_init.num_gpus': 4,
         'ray_init.num_cpus': cpus, 'ray_init.include_dashboard': False,
+        'ray_init._temp_dir': None,
         'ray_init.object_store_memory': 2 * 1024**3,
         'ray_init.runtime_env.env_vars.PYTHONPATH': os.pathsep.join([str(ROOT / 'src'), str(UPSTREAM)]),
         'ray_init.runtime_env.env_vars.ALFWORLD_DATA': str(assets),
@@ -168,8 +169,9 @@ def main():
     parser.add_argument('--resume', action='store_true')
     parser.add_argument('--dry-run', action='store_true', help='Compose and print config, no CUDA/model/data access')
     args = parser.parse_args()
-    if args.cpus < 24:
-        parser.error('At least 24 allocated logical CPUs are recommended for the pooled configuration')
+    minimum_cpus = 32
+    if args.cpus < minimum_cpus:
+        parser.error(f'At least {minimum_cpus} allocated logical CPUs are required for native environment actors')
     if args.model and args.command != 'eval':
         parser.error('--model is only accepted for evaluation; training uses the pinned base model')
     if args.command == 'export':

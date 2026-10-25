@@ -141,12 +141,18 @@ bash scripts/train.sh --size 1.5b --resume
 
 使用上游原生续训机制；校验四rank的模型/optimizer/extra_state和dataloader文件，以及模型/配方/任务集绑定。TextWorld环境游戏迭代器未保存，所以不承诺中断续跑与连续训练逐位相同。首个20步断点前中断不能冒充已可恢复；新运行不覆盖已有目录。
 
-相对上游RLSD 8卡脚本：适配4卡/TP1、vLLM显存0.3/eager/释放cache、官方fused torch log-prob后端；每16个独立原生环境共用一个Ray actor，以降低主机内存。每update任务/轨迹数、GRPO和RLSD公式、原生Teacher/skill、prompt、奖励与动作解析不变。验证改为共同seen140/每10步，保存改为每20步及150。
+相对上游RLSD 8卡脚本：仅适配4卡资源绑定；TP2、vLLM显存0.6、enforce_eager=false、free_cache_engine=false、非fused模型路径、每环境一个Ray actor及每actor 0.1 CPU均恢复官方设置。每update任务/轨迹数、GRPO和RLSD公式、原生Teacher/skill、prompt、奖励与动作解析不变。验证改为共同seen140/每10步，保存改为每20步及150。
 
-补丁只更改环境分组/固定验证和 `main_rlsd.py` 的trainer导入；`rlsd_eval.FixedSeenTrainer` 只增加评测/日志，直接调用原生 `RLSDRayTrainer.fit`。核心算法、Actor、Teacher、skill、reward与上游文件SHA在 [upstream.json](configs/upstream.json) 中锁定；没有带入RETHINK或SDAR loss的补丁。
+补丁只更改固定验证和 `main_rlsd.py` 的trainer导入；`rlsd_eval.FixedSeenTrainer` 只增加评测/日志，直接调用原生 `RLSDRayTrainer.fit`。核心算法、Actor、Teacher、skill、reward与上游文件SHA在 [upstream.json](configs/upstream.json) 中锁定；没有带入RETHINK或SDAR loss的补丁。
 
 ## 6. 验证范围与许可
 
-检查包含干净检出准备、两种尺寸配置、优势符号保留、权重裁剪、Teacher/Student detach、零gap等价GRPO、lambda warmdown、环境分组seed/顺序、完整断点与逐任务评测。GitHub Actions在全新Linux检出执行CPU检查。**尚未实测四卡A100 CUDA/NCCL/vLLM训练，不附带训练成绩。**
+检查包含干净检出准备、两种尺寸配置、优势符号保留、权重裁剪、Teacher/Student detach、零gap等价GRPO、lambda warmdown、原生环境seed/顺序、完整断点与逐任务评测。GitHub Actions在全新Linux检出执行CPU检查。**尚未实测四卡A100 CUDA/NCCL/vLLM训练，不附带训练成绩。**
 
 包装代码和所复用的SDAR源码为Apache-2.0。1.5B模型为Apache-2.0，3B为Qwen Research License；模型权重与ALFWorld资源单独遵循来源许可。来源与差异见 [THIRD_PARTY.md](THIRD_PARTY.md)。
+
+## 2026-10-26 执行设置更正
+
+撤回额外添加的串行环境分组，恢复官方每环境一个 Ray actor、每 actor 0.1 CPU。RLSD 同时恢复官方 TP2、显存比例 0.6、CUDA Graph 和不强制释放缓存的设置。模型尺寸、获配卡数、训练量、loss、固定 seen140、验证频率和已约定的断点规则不变。未改写上游 rollout、Teacher 或优化器。
+
+已有 checkout 的旧 `.deps/sdar` 仍带旧补丁：在训练停止并保留断点后，将它改名备份，再运行 `python src/setup.py --framework`；或在新的目录重新克隆。不要删除 `runs/`，也不要在运行中的任务里替换依赖。旧配方与新配方的绑定 SHA 不同，禁止绕过恢复校验直接续跑。此更正通过 CPU/干净检出检查不等于已完成 A100 CUDA/NCCL/vLLM 实测。
